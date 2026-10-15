@@ -1,23 +1,28 @@
-# Atividade 3 | Mapa de monitoramento de frota de ônibus
+# Mapa de monitoramento de frota de ônibus (SPTrans)
 
-## Introdução
+Gera `mapa_frota.html` com as paradas (pins azuis) e os ônibus em tempo real (pins vermelhos) da linha configurada em `LETREIRO_LINHA` (padrão: 875A).
 
-Nos slides de [monitoramento de frota de ônibus](https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/monitoramento-da-frota-de-%C3%B4nibus) vimos como utilizar a plataforma da [SPTrans](https://www.sptrans.com.br/).   
+## Como executar
 
-Seguindo estas etapas:
+1. Instale as dependências:
 
-- [Autenticação](https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/monitoramento-da-frota-de-%C3%B4nibus)
-- [Busca por paradas](https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/monitoramento-da-frota-de-%C3%B4nibus)
-- [Posições em tempo real](https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/monitoramento-da-frota-de-%C3%B4nibus)
-- [Criação de mapa](https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/monitoramento-da-frota-de-%C3%B4nibus)
+   ```
+   pip install -r requirementes.txt
+   ```
 
-O objetivo desta atividade é criar um mapa com os pins das paradas de ônibus e os pins do ônibus em circulação em tempo real.
+2. Copie `.env.example` para `.env` e coloque um token válido da API Olho Vivo:
 
-## Requisitos
+   ```
+   SPTRANS_TOKEN=seu_token_aqui
+   ```
 
-- [ ] Deverá criar um fork deste repositório
-- [ ] Deverá incluir toda a solução no script `solution.py`
-- [ ] O mapa deverá ser adicionado no repositório
-- [ ] Os pins das paradas deverão ser de cor diferente dos pins de posição em tempo real
-- [ ] O ônibus selecionado deverá ser diferente do que foi utilizado nos slides
+3. Rode:
 
+   ```
+   python solution.py
+   ```
+
+4. Abra o arquivo `mapa_frota.html` no navegador.
+
+## Observações
+- Nos meus testes, a API da SPTrans retornou `false` em `POST /Login/Autenticar` mesmo com `Content-Length: 0` (testado via `curl`), por isso o mapa precisa ser gerado com um token que esteja sendo aceito.
